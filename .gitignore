@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Rust build artifacts
+src-tauri/target/
+
+# macOS
+.DS_Store
+*.swp
+*~
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Tauri dev artifacts
+src-tauri/gen/
+
+# Environment
+.env
+.env.*
+
+# Lockfiles (pnpm generates on install)
+# Keep pnpm-lock.yaml for reproducible builds

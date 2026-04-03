@@ -1,0 +1,12 @@
+{
+  "name": "disk-cleaner",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "cargo tauri dev",
+    "build": "cargo tauri build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "productName": "Disk Cleaner",
+  "version": "0.1.0",
+  "identifier": "com.diskcleaner.tool",
+  "build": {
+    "frontendDist": "../src"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "Disk Cleaner",
+        "width": 1000,
+        "height": 720,
+        "minWidth": 800,
+        "minHeight": 500,
+        "resizable": true,
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
+        "decorations": true,
+        "transparent": false
+      }
+    ]
+  }
+}

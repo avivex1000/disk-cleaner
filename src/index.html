@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disk Cleaner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Draggable title bar region -->
+  <div id="titlebar" data-tauri-drag-region>
+    <div class="tb-left">
+      <span class="tb-title">Disk Cleaner</span>
+      <span id="scan-info" class="tb-subtitle"></span>
+    </div>
+    <div class="tb-right">
+      <button id="btn-view-toggle" class="btn btn-ghost hidden" onclick="toggleView()">By Size</button>
+      <button id="btn-scan" class="btn btn-primary" onclick="startScan()">Scan</button>
+      <button id="btn-select-mode" class="btn btn-ghost hidden" onclick="enterSelectMode()">Select</button>
+    </div>
+  </div>
+
+  <!-- Initial state -->
+  <div id="empty-state" class="center-content">
+    <div class="empty-icon">🧹</div>
+    <p>Click <strong>Scan</strong> to analyze your disk</p>
+  </div>
+
+  <!-- Widgets row: Stats + Suggestions side by side -->
+  <div id="widgets" class="hidden">
+    <section id="widget-stats" class="widget">
+      <div id="chart-container">
+        <svg id="donut-chart" viewBox="0 0 200 200"></svg>
+        <div id="chart-center">
+          <span id="total-size">0</span>
+          <span class="chart-label">reclaimable</span>
+        </div>
+      </div>
+      <div id="legend"></div>
+    </section>
+    <section id="widget-suggestions" class="widget">
+      <div class="widget-header">Suggestions</div>
+      <div id="suggestions-list"></div>
+    </section>
+  </div>
+
+  <!-- Scrollable tree table -->
+  <main id="main" class="hidden">
+    <table id="tree-table">
+      <thead>
+        <tr>
+          <th class="col-check"></th>
+          <th class="col-name">Name</th>
+          <th class="col-bar"></th>
+          <th class="col-size">Size</th>
+          <th class="col-action"></th>
+        </tr>
+      </thead>
+      <tbody id="tree-body"></tbody>
+    </table>
+  </main>
+
+  <!-- Select mode floating bar -->
+  <div id="select-bar" class="hidden">
+    <span id="select-bar-info">0 items selected</span>
+    <div class="select-bar-actions">
+      <button class="btn btn-ghost" onclick="exitSelectMode()">Cancel</button>
+      <button id="btn-delete-selected" class="btn btn-danger" onclick="deleteSelected()" disabled>Delete Selected</button>
+    </div>
+  </div>
+
+  <!-- Confirm modal -->
+  <div id="modal-overlay" class="hidden" onclick="closeModal()">
+    <div id="modal" onclick="event.stopPropagation()">
+      <h3 id="modal-title">Confirm</h3>
+      <p id="modal-message"></p>
+      <div id="modal-items"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-danger" onclick="confirmDelete()">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
